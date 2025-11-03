@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Binary Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 350px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .result {
+            margin-top: 10px;
+            font-size: 16px;
+            word-break: break-all;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Text → Binary</h2>
+        <input type="text" id="textInput" placeholder="Type something...">
+        <button onclick="textToBinary()">Convert</button>
+        <div class="result" id="binaryResult"></div>
+    </div>
+
+    <script>
+        function textToBinary() {
+            const text = document.getElementById("textInput").value;
+            const resultDiv = document.getElementById("binaryResult");
+
+            if (text === "") {
+                resultDiv.textContent = "Please enter some text!";
+                return;
+            }
+
+            // Convert each character to 8-bit binary
+            const binaryStr = text.split('')
+                                  .map(char => char.charCodeAt(0).toString(2).padStart(8, '0'))
+                                  .join(' ');
+
+            resultDiv.textContent = binaryStr;
+        }
+    </script>
+</body>
+</html>
